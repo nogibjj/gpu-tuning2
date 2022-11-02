@@ -18,6 +18,10 @@ dataset["train"][100]
 tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
 
 def tokenize_function(examples):
+    """
+    Tokenize the text.
+    Return a dictionary with the tokenized text and the labels. (DOUBLE CHECK THIS)
+    """
     return tokenizer(examples["text"], padding="max_length", truncation=True)
 tokenized_datasets = dataset.map(tokenize_function, batched=True)
 
