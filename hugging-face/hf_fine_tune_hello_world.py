@@ -13,8 +13,12 @@ from transformers import TrainingArguments, Trainer
 import numpy as np
 
 # Load the dataset
-dataset = load_dataset("yelp_review_full")
-dataset["train"][100]
+dataset = load_dataset("tiny_shakespeare")
+# pd.DataFrame.from_dict(data, orient='index')
+#dataset["train"][100]
+
+# declare our tokenizer
+# NOT the model we will be fine tuning
 tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
 
 def tokenize_function(examples):
@@ -48,4 +52,8 @@ trainer = Trainer(
     compute_metrics=compute_metrics,
 )
 
-trainer.train() # train the model
+if __name__ == "__main__":
+    trainer.train()
+    trainer.evaluate()
+
+#trainer.train() # train the model
